@@ -625,9 +625,9 @@ while True:
                     if Pirate[8] == 0:
                         if SmashTimer == 0:
                             if Pirate[0] > player.rect.x:
-                                PlayerXMomentum = 0
+                                PlayerXMomentum = -3
                             else:
-                                PlayerXMomentum = 0
+                                PlayerXMomentum = 3
                             random.choice(Punches).play()
                 else:
                     if Pirate[8] == 0:
@@ -648,9 +648,9 @@ while True:
                     if Pirate[8] == 0:
                         if SmashTimer == 0:
                             if Pirate[0] > player.rect.x:
-                                PlayerXMomentum = 0
+                                PlayerXMomentum = -2
                             else:
-                                PlayerXMomentum = 0
+                                PlayerXMomentum = 2
                             random.choice(Punches).play()
                 else:
                     if Pirate[8] == 0:
@@ -675,7 +675,7 @@ while True:
         Display.blit(BulletImage,(Bullet[0],Bullet[1]))
         BulletR = pygame.Rect(Bullet[0],Bullet[1],7,2)
         if player.rect.colliderect(BulletR):
-            PlayerXMomentum = 0
+            PlayerXMomentum = -5
             Bullets.remove(Bullet)
         elif Bullet[0] < -7:
             Bullets.remove(Bullet)
@@ -967,13 +967,13 @@ while True:
                 Left = True
             if event.key == K_DOWN:
                 Smash = True
-            if event.key == K_UP:
+            if event.key == ord('x'):
                 if Jumps > 0:
                     Jumps -= 1
                     Gravity = -4
                     ButtonProgress[0] = 40
                     MovementParticles.append(['jump',player.rect.x-3,player.rect.y,'r',0])
-            if event.key == K_SPACE:
+            if event.key ==ord('c'):
                 if Punching == 0:
                     PunchAttempt.play()
                     Punching = 25
@@ -989,50 +989,50 @@ while True:
     # Update ------------------------------------------------- #
     if fpsOn == True:
         drawText('FPS:'+(TrueFPS)+'', basicFont, WHITE, screen, 500,12)
-    #if Distance <= 0:
-    #    OldDisplay = Display.copy()
-    #    BlackPanel = pygame.Surface((300,200))
-    #    BlackPanel.fill((BLACK))
-    #    num = 0
-    #    num2 = 0
-    #    num3 = 0
-    #    Text = ''
-    #    OutroText = 'you successfully delivered the crystal and you were paid for your tough journey.                                                    press x'
-    #    EndIntro = False
-    #    while True:
-    #        Display.blit(OldDisplay,(0,0))
-    #        num += 2.55
-    #        if num > 255:
-    #            num = 255
-    #        BlackPanel.set_alpha(int(num))
-    #        Display.blit(BlackPanel,(0,0))
-    #        if num == 255:
-    #            num2 += 1
-    #            if num2 == 2:
-    #                num2 = 0
-    #                if num3 < len(OutroText):
-    #                    Text += OutroText[num3]
-    #                num3 += 1
-    #            TextTemp = Text + ' '
-    #            ShowText(TextTemp,50,50,1,200,Font_0)
-    #            if num3 > len(OutroText):
-    #                ShowText('Follow Plz!    DaFluffyPotato ',117,188,1,200,Font_0)
-    #                Display.blit(Twitter,(192,186))
-    #        for event in pygame.event.get():
-    #            if event.type == QUIT:
-    #                pygame.quit()
-    #                sys.exit()
-    #            if event.type == KEYDOWN:
-    #                if event.key == K_ESCAPE:
-    #                    pygame.quit()
-    #                    sys.exit()
-    #                if num == 255:
-    #                    if event.key == ord('x'):
-    #                        pygame.quit()
-    #                        sys.exit()
-    #        screen.blit(pygame.transform.scale(Display,(300*SCALE,200*SCALE)),(0,0))
-    #        pygame.display.update()
-    #        mainClock.tick(40)
+    if Distance <= 0:
+        OldDisplay = Display.copy()
+        BlackPanel = pygame.Surface((300,200))
+        BlackPanel.fill((BLACK))
+        num = 0
+        num2 = 0
+        num3 = 0
+        Text = ''
+        OutroText = 'you successfully delivered the crystal and you were paid for your tough journey.                                                    press x'
+        EndIntro = False
+        while True:
+            Display.blit(OldDisplay,(0,0))
+            num += 2.55
+            if num > 255:
+                num = 255
+            BlackPanel.set_alpha(int(num))
+            Display.blit(BlackPanel,(0,0))
+            if num == 255:
+                num2 += 1
+                if num2 == 2:
+                    num2 = 0
+                    if num3 < len(OutroText):
+                        Text += OutroText[num3]
+                    num3 += 1
+                TextTemp = Text + ' '
+                ShowText(TextTemp,50,50,1,200,Font_0)
+                #if num3 > len(OutroText):
+                    #ShowText('Follow Plz!    DaFluffyPotato ',117,188,1,200,Font_0)
+                    #Display.blit(Twitter,(192,186))
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                    if num == 255:
+                        if event.key == ord('x'):
+                            pygame.quit()
+                            sys.exit()
+            screen.blit(pygame.transform.scale(Display,(300*SCALE,200*SCALE)),(0,0))
+            pygame.display.update()
+            mainClock.tick(40)
     if player.rect.y > 200:
         AlphaSurface = pygame.Surface((300,200)).convert()
         AlphaSurface.fill(BLACK)
@@ -1102,4 +1102,3 @@ while True:
     screen.blit(pygame.transform.scale(Display,(300*SCALE,200*SCALE)),(0,0))
     pygame.display.update()
     mainClock.tick(40)
-    
