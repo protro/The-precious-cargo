@@ -105,11 +105,9 @@ MovementHelp = LoadTileAnimation('Data/Images/Buttons/Movement',1)
 CombatHelp = LoadTileAnimation('Data/Images/Buttons/Combat',1)
 DestroyHelp = LoadTileAnimation('Data/Images/Buttons/Destroy',1)
 BulletImage = pygame.image.load('Data/Images/Bullet.png')
-Twitter = pygame.image.load('Data/Images/Twitter.png').convert()
 TurnAnimation = LoadTileAnimation('Data/Images/Other Animations/Turn/Out',8)
 JumpAnimation = LoadTileAnimation('Data/Images/Other Animations/Jump/Out',13)
 StarImages = LoadTileAnimation('Data/Images/Stars/Star',6)
-Twitter.set_colorkey((255,255,255))
 PowerParticle.set_colorkey((255,255,255))
 Player_0.set_colorkey((255,255,255))
 Player_1.set_colorkey((255,255,255))
@@ -349,8 +347,8 @@ while (EndIntro == False):
         num2 += 1
     TextTemp = Text + ' '
     ShowText(TextTemp,50,50,1,200,Font_0)
-    ShowText('Follow Plz!    DaFluffyPotato ',117,188,1,200,Font_0)
-    Display.blit(Twitter,(192,186))
+    #ShowText('Follow Plz!    DaFluffyPotato ',117,188,1,200,Font_0)
+    #Display.blit(Twitter,(192,186))
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -625,9 +623,9 @@ while True:
                     if Pirate[8] == 0:
                         if SmashTimer == 0:
                             if Pirate[0] > player.rect.x:
-                                PlayerXMomentum = -3
+                                PlayerXMomentum = -4
                             else:
-                                PlayerXMomentum = 3
+                                PlayerXMomentum = 4
                             random.choice(Punches).play()
                 else:
                     if Pirate[8] == 0:
@@ -648,9 +646,9 @@ while True:
                     if Pirate[8] == 0:
                         if SmashTimer == 0:
                             if Pirate[0] > player.rect.x:
-                                PlayerXMomentum = -2
+                                PlayerXMomentum = -3
                             else:
-                                PlayerXMomentum = 2
+                                PlayerXMomentum = 3
                             random.choice(Punches).play()
                 else:
                     if Pirate[8] == 0:
@@ -675,7 +673,7 @@ while True:
         Display.blit(BulletImage,(Bullet[0],Bullet[1]))
         BulletR = pygame.Rect(Bullet[0],Bullet[1],7,2)
         if player.rect.colliderect(BulletR):
-            PlayerXMomentum = -5
+            PlayerXMomentum = -7
             Bullets.remove(Bullet)
         elif Bullet[0] < -7:
             Bullets.remove(Bullet)
@@ -973,7 +971,7 @@ while True:
                     Gravity = -4
                     ButtonProgress[0] = 40
                     MovementParticles.append(['jump',player.rect.x-3,player.rect.y,'r',0])
-            if event.key ==ord('c'):
+            if event.key == ord('c'):
                 if Punching == 0:
                     PunchAttempt.play()
                     Punching = 25
@@ -1015,9 +1013,6 @@ while True:
                     num3 += 1
                 TextTemp = Text + ' '
                 ShowText(TextTemp,50,50,1,200,Font_0)
-                #if num3 > len(OutroText):
-                    #ShowText('Follow Plz!    DaFluffyPotato ',117,188,1,200,Font_0)
-                    #Display.blit(Twitter,(192,186))
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
@@ -1102,3 +1097,4 @@ while True:
     screen.blit(pygame.transform.scale(Display,(300*SCALE,200*SCALE)),(0,0))
     pygame.display.update()
     mainClock.tick(40)
+    
